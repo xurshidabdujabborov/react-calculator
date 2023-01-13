@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer, useState } from "react";
+import Calc from "./Components/Calc";
+import Count from "./Components/Count";
+
+export const Contexts = React.createContext()
 
 function App() {
+  const [num1, setNum1] = useState("")
+  const [num2, setNum2] = useState("")
+  const [select, setSelect] = useState("")
+  const [res, setRes] = useState(0)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Contexts.Provider value={{ num1, setNum1, num2, setNum2, select, setSelect, res, setRes }}>
+      <div className="App" style={{ textAlign: "center" }}>
+        <h1 style={{margin: "20px"}}>useReducer and useContext calculator</h1>
+        <Count /> 
+        <Calc />  
+      </div>
+    </Contexts.Provider>
   );
 }
 
